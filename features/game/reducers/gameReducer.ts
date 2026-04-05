@@ -34,11 +34,10 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       const isLast = state.scenarioIndex >= GAME_SCENARIO_COUNT - 1;
       if (isLast) return { ...state, won: true };
       const nextIndex = state.scenarioIndex + 1;
-      const nextScenario = SCENARIOS[state.scenarioQueue[nextIndex]];
       return {
         ...state,
         scenarioIndex: nextIndex,
-        year: nextScenario.year,
+        year: state.year + 1,
         phase: "event",
         headline: null,
         selectedChoice: null,

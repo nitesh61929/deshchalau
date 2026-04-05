@@ -20,7 +20,7 @@ export function createInitialState(): GameState {
     youthAnger: 40,
     economy: 55,
     partyLoyalty: 65,
-    year: SCENARIOS[queue[0]].year,
+    year: 2081,
     phase: "event",
     scenarioIndex: 0,
     scenarioQueue: queue,

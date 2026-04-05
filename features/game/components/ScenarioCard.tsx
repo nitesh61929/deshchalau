@@ -13,14 +13,10 @@ export function ScenarioCard() {
 
   return (
     <div className="bg-paper border border-border rounded-lg p-5">
-      {/* Year + scenario count */}
-      <div className="flex justify-between items-center mb-3">
+      {/* Year */}
+      <div className="mb-3">
         <span className="text-xs text-muted font-mono">
           {t("game.year")} {state.year}
-        </span>
-        <span className="text-xs text-muted font-mono">
-          {t("game.scenario")} {state.scenarioIndex + 1} {t("game.of")}{" "}
-          {GAME_SCENARIO_COUNT}
         </span>
       </div>
 

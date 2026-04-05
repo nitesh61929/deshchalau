@@ -28,7 +28,7 @@ export default function LandingPage() {
         <ol className="space-y-2 text-sm font-mono text-ink list-none">
           {[
             { en: "You are the Prime Minister of Nepal.", np: "तपाईं नेपालका प्रधानमन्त्री हुनुहुन्छ।" },
-            { en: "Face 3 real-inspired crises across 5 years.", np: "५ वर्षमा ३ वास्तविक संकटहरू सामना गर्नुहोस्।" },
+            { en: "Face 5 real-inspired crises across 5 years.", np: "५ वर्षमा ५ वास्तविक संकटहरू सामना गर्नुहोस्।" },
             { en: "Every decision shifts 5 national meters.", np: "हरेक निर्णयले ५ राष्ट्रिय सूचकहरू परिवर्तन गर्छ।" },
             { en: "Survive — and discover your legacy.", np: "बाँच्नुहोस् — र आफ्नो विरासत हेर्नुहोस्।" },
           ].map((step, i) => (
