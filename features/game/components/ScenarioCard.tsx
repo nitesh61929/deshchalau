@@ -23,8 +23,13 @@ export function ScenarioCard() {
         </span>
       </div>
 
-      {/* Newspaper rule */}
-      <hr className="newspaper-rule" />
+      {/* Scenario progress bar */}
+      <div className="w-full h-1.5 bg-background rounded-full overflow-hidden border border-border mb-3">
+        <div
+          className="h-full bg-accent rounded-full transition-all duration-500"
+          style={{ width: `${((state.scenarioIndex + 1) / SCENARIOS.length) * 100}%` }}
+        />
+      </div>
 
       {/* Scenario title */}
       <h2
