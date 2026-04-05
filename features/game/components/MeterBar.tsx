@@ -34,7 +34,7 @@ export function MeterBar({ meterKey }: MeterBarProps) {
           {value}%
         </span>
       </div>
-      <div className="w-full h-2 bg-background rounded-full overflow-hidden border border-border">
+      <div className="w-full h-3 bg-border rounded-full overflow-hidden">
         <motion.div
           className={`h-full rounded-full ${isDanger ? "bg-danger" : config.color}`}
           initial={false}

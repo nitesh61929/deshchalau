@@ -6,13 +6,13 @@
 
 @layer base {
   :root {
-    --background: #0f0e0c;
-    --paper: #1a1814;
-    --ink: #e8e0d0;
-    --accent: #c41e1e;
+    --background: #080d1c;
+    --paper: #0e1530;
+    --ink: #e2e8f5;
+    --accent: #C8102E;
     --gold: #d4a843;
-    --muted: #6b6459;
-    --border: #2d2920;
+    --muted: #5c6f9e;
+    --border: #1e2d50;
     --success: #22c55e;
     --warning: #f59e0b;
     --danger: #ef4444;
@@ -72,7 +72,7 @@
 
   .newspaper-rule {
     border: none;
-    border-top: 3px double var(--border);
+    border-top: 2px solid var(--border);
     margin: 1rem 0;
   }
 }
