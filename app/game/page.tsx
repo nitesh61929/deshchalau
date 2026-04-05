@@ -33,7 +33,7 @@ function GameScreen() {
         );
       }, 2000);
     }
-  }, [state.gameOver, state.won]);
+  }, [state.gameOver, state.won, state.approval, state.budget, state.youthAnger, state.economy, state.partyLoyalty, state.gameOverReason, router]);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">

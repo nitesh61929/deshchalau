@@ -12,8 +12,8 @@ interface ChoiceButtonProps {
 }
 
 export function ChoiceButton({ choice, index, disabled }: ChoiceButtonProps) {
-  const { choose, selectedChoiceIndex, lang } = useGame();
-  const isSelected = selectedChoiceIndex === index;
+  const { choose, state, lang } = useGame();
+  const isSelected = state.selectedChoiceIndex === index;
 
   function handleClick() {
     if (disabled) return;
