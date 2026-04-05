@@ -19,12 +19,12 @@ export function Header() {
         </span>
       </div>
       <div className="flex items-center gap-3">
-        <button
+        {/* <button
           onClick={toggleLang}
           className="text-xs border border-border px-3 py-1 rounded hover:border-gold hover:text-gold transition-colors font-mono"
         >
           {t("nav.language")}
-        </button>
+        </button> */}
         <button
           onClick={toggleMute}
           className="text-xs border border-border px-3 py-1 rounded hover:border-accent hover:text-accent transition-colors font-mono"
