@@ -6,7 +6,7 @@ import { siteConfig } from "@/config/site";
 
 export function Header() {
   const { muted, toggleMute } = useAudio();
-  const { toggleLang, t, lang } = useLanguage();
+  const { lang } = useLanguage();
 
   return (
     <header className="w-full border-b border-border bg-paper px-4 py-3 flex items-center justify-between">
