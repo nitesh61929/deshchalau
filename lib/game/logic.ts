@@ -23,13 +23,10 @@ export function applyEffects(state: GameState, effects: Effects): GameState {
 }
 
 export function checkGameOver(state: GameState): string | null {
-  if (state.approval <= 10)
-    return "Public trust has collapsed. You have been removed from office.";
-  if (state.budget <= 5)
-    return "The national treasury is empty. Nepal cannot function.";
-  if (state.youthAnger >= 95)
-    return "Youth rage has boiled over. Revolution has begun.";
-  if (state.economy <= 5) return "Economic collapse. Nepal is bankrupt.";
-  if (state.partyLoyalty <= 5) return "Your own party has voted to oust you.";
+  if (state.approval <= 10) return "approval";
+  if (state.budget <= 5) return "budget";
+  if (state.youthAnger >= 95) return "youthAnger";
+  if (state.economy <= 5) return "economy";
+  if (state.partyLoyalty <= 5) return "partyLoyalty";
   return null;
 }

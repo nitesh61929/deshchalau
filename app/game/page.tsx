@@ -10,7 +10,7 @@ import { Header } from "@/components/layout/Header";
 import { audioEngine } from "@/lib/audio";
 
 function GameScreen() {
-  const { state } = useGame();
+  const { state, t, lang } = useGame();
   const router = useRouter();
 
   useEffect(() => {
@@ -29,7 +29,7 @@ function GameScreen() {
       );
       setTimeout(() => {
         router.push(
-          `/result?score=${score}&won=${state.won}&reason=${encodeURIComponent(state.gameOverReason)}`,
+          `/result?score=${score}&won=${state.won}&reason=${encodeURIComponent(state.gameOverReason)}&lang=${lang}`,
         );
       }, 2000);
     }
@@ -47,11 +47,13 @@ function GameScreen() {
         {state.gameOver && (
           <div className="bg-paper border border-danger rounded-lg p-5 text-center">
             <p className="font-headline text-xl text-danger font-bold mb-1">
-              💀 Game Over
+              💀 {t("gameOver.title")}
             </p>
-            <p className="text-sm font-mono text-ink">{state.gameOverReason}</p>
+            <p className={`text-sm text-ink ${lang === "np" ? "font-nepali" : "font-mono"}`}>
+              {t(`gameOver.reasons.${state.gameOverReason}`)}
+            </p>
             <p className="text-xs text-muted mt-2 font-mono">
-              Redirecting to results…
+              {t("gameOver.redirecting")}
             </p>
           </div>
         )}
@@ -59,13 +61,13 @@ function GameScreen() {
         {state.won && (
           <div className="bg-paper border border-gold rounded-lg p-5 text-center">
             <p className="font-headline text-xl text-gold font-bold mb-1">
-              🎉 Term Complete!
+              🎉 {t("won.title")}
             </p>
-            <p className="text-sm font-mono text-ink">
-              You survived 5 years as PM of Nepal.
+            <p className={`text-sm text-ink ${lang === "np" ? "font-nepali" : "font-mono"}`}>
+              {t("won.message")}
             </p>
             <p className="text-xs text-muted mt-2 font-mono">
-              Calculating your legacy…
+              {t("won.calculating")}
             </p>
           </div>
         )}
