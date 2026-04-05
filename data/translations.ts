@@ -14,6 +14,13 @@ export const T = {
       youthAnger: "Youth Anger",
       economy: "Economy",
       partyLoyalty: "Party Loyalty",
+      short: {
+        approval: "Approval",
+        budget: "Budget",
+        youthAnger: "Anger",
+        economy: "Economy",
+        partyLoyalty: "Loyalty",
+      },
     },
     game: {
       year: "Year",
@@ -96,6 +103,13 @@ export const T = {
       youthAnger: "युवा आक्रोश",
       economy: "अर्थतन्त्र",
       partyLoyalty: "पार्टी एकता",
+      short: {
+        approval: "समर्थन",
+        budget: "बजेट",
+        youthAnger: "आक्रोश",
+        economy: "अर्थ",
+        partyLoyalty: "एकता",
+      },
     },
     game: {
       year: "वर्ष",
