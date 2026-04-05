@@ -11,13 +11,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#080d1c",
-        paper: "#0e1530",
-        ink: "#e2e8f5",
+        background: "#0d0d0d",
+        paper: "#181818",
+        ink: "#f0ece4",
         accent: "#C8102E",
         gold: "#d4a843",
-        muted: "#5c6f9e",
-        border: "#1e2d50",
+        muted: "#9a9a9a",
+        border: "#2e2e2e",
         danger: "#ef4444",
       },
       fontFamily: {
