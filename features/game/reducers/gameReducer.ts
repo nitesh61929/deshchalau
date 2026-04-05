@@ -1,7 +1,7 @@
 import type { GameState } from "@/types/game";
 import type { GameAction } from "./gameActions";
 import { applyEffects, checkGameOver } from "@/lib/game/logic";
-import { INITIAL_STATE } from "@/lib/game/constants";
+import { createInitialState, GAME_SCENARIO_COUNT } from "@/lib/game/constants";
 import { SCENARIOS } from "@/data/scenarios";
 
 export function gameReducer(state: GameState, action: GameAction): GameState {
@@ -9,6 +9,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
     case "CHOOSE": {
       const next = applyEffects(state, action.payload.choice.effects);
       const reason = checkGameOver(next);
+      const currentScenario = SCENARIOS[state.scenarioQueue[state.scenarioIndex]];
       return {
         ...next,
         selectedChoice: action.payload.choice,
@@ -22,7 +23,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
           : [
               ...state.history,
               {
-                scenarioTitle: SCENARIOS[state.scenarioIndex].en.title,
+                scenarioTitle: currentScenario.en.title,
                 choiceLabel: action.payload.choice.label,
                 effects: action.payload.choice.effects,
               },
@@ -30,13 +31,14 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       };
     }
     case "NEXT_ROUND": {
-      const isLast = state.scenarioIndex >= SCENARIOS.length - 1;
+      const isLast = state.scenarioIndex >= GAME_SCENARIO_COUNT - 1;
       if (isLast) return { ...state, won: true };
-      const next = SCENARIOS[state.scenarioIndex + 1];
+      const nextIndex = state.scenarioIndex + 1;
+      const nextScenario = SCENARIOS[state.scenarioQueue[nextIndex]];
       return {
         ...state,
-        scenarioIndex: state.scenarioIndex + 1,
-        year: next.year,
+        scenarioIndex: nextIndex,
+        year: nextScenario.year,
         phase: "event",
         headline: null,
         selectedChoice: null,
@@ -45,7 +47,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       };
     }
     case "RESTART":
-      return INITIAL_STATE;
+      return createInitialState();
     case "SET_ANIMATING":
       return { ...state, animating: action.payload };
     default:

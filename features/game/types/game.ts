@@ -51,6 +51,7 @@ export interface GameState extends Meters {
   year: number;
   phase: GamePhase;
   scenarioIndex: number;
+  scenarioQueue: number[];
   headline: string | null;
   selectedChoice: Choice | null;
   selectedChoiceIndex: number | null;

@@ -1,24 +1,39 @@
 import type { GameState, MeterConfig } from "@/types/game";
 import { SCENARIOS } from "@/data/scenarios";
 
-export const INITIAL_STATE: GameState = {
-  approval: 60,
-  budget: 60,
-  youthAnger: 40,
-  economy: 55,
-  partyLoyalty: 65,
-  year: SCENARIOS[0].year,
-  phase: "event",
-  scenarioIndex: 0,
-  headline: null,
-  selectedChoice: null,
-  selectedChoiceIndex: null,
-  gameOver: false,
-  gameOverReason: "",
-  won: false,
-  history: [],
-  animating: false,
-};
+export const GAME_SCENARIO_COUNT = 5;
+
+function pickRandomQueue(count: number): number[] {
+  const indices = SCENARIOS.map((_, i) => i);
+  for (let i = indices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
+  }
+  return indices.slice(0, count);
+}
+
+export function createInitialState(): GameState {
+  const queue = pickRandomQueue(GAME_SCENARIO_COUNT);
+  return {
+    approval: 60,
+    budget: 60,
+    youthAnger: 40,
+    economy: 55,
+    partyLoyalty: 65,
+    year: SCENARIOS[queue[0]].year,
+    phase: "event",
+    scenarioIndex: 0,
+    scenarioQueue: queue,
+    headline: null,
+    selectedChoice: null,
+    selectedChoiceIndex: null,
+    gameOver: false,
+    gameOverReason: "",
+    won: false,
+    history: [],
+    animating: false,
+  };
+}
 
 export const METER_CONFIG: Record<string, MeterConfig> = {
   approval: {

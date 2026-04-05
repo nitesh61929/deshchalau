@@ -3,10 +3,11 @@
 import { useGame } from "../context/GameContext";
 import { ChoiceButton } from "./ChoiceButton";
 import { SCENARIOS } from "@/data/scenarios";
+import { GAME_SCENARIO_COUNT } from "@/lib/game/constants";
 
 export function ScenarioCard() {
   const { state, lang, t } = useGame();
-  const scenario = SCENARIOS[state.scenarioIndex];
+  const scenario = SCENARIOS[state.scenarioQueue[state.scenarioIndex]];
   const content = scenario[lang];
   const isHeadline = state.phase === "headline";
 
@@ -19,7 +20,7 @@ export function ScenarioCard() {
         </span>
         <span className="text-xs text-muted font-mono">
           {t("game.scenario")} {state.scenarioIndex + 1} {t("game.of")}{" "}
-          {SCENARIOS.length}
+          {GAME_SCENARIO_COUNT}
         </span>
       </div>
 
@@ -27,7 +28,7 @@ export function ScenarioCard() {
       <div className="w-full h-1.5 bg-background rounded-full overflow-hidden border border-border mb-3">
         <div
           className="h-full bg-accent rounded-full transition-all duration-500"
-          style={{ width: `${((state.scenarioIndex + 1) / SCENARIOS.length) * 100}%` }}
+          style={{ width: `${((state.scenarioIndex + 1) / GAME_SCENARIO_COUNT) * 100}%` }}
         />
       </div>
 
