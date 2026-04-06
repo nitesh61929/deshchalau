@@ -27,13 +27,27 @@ function GameScreen() {
           state.partyLoyalty) /
           5,
       );
-      setTimeout(() => {
+      const timeout = setTimeout(() => {
         router.push(
           `/result?score=${score}&won=${state.won}&reason=${encodeURIComponent(state.gameOverReason)}&lang=${lang}&year=${state.year}`,
         );
       }, 2000);
+
+      return () => clearTimeout(timeout);
     }
-  }, [state.gameOver, state.won, state.approval, state.budget, state.youthAnger, state.economy, state.partyLoyalty, state.gameOverReason, router, lang]);
+  }, [
+    state.gameOver,
+    state.won,
+    state.approval,
+    state.budget,
+    state.youthAnger,
+    state.economy,
+    state.partyLoyalty,
+    state.gameOverReason,
+    state.year,
+    router,
+    lang,
+  ]);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
