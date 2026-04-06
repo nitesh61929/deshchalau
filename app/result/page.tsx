@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import { getLegacyKey, LEGACY_COLORS } from "@/lib/game/scoring";
 import { siteConfig } from "@/config/site";
 import { T } from "@/data/translations";
 import type { Lang } from "@/types/game";
+import { usePlayerStore } from "@/lib/stores/playstore";
 
 function ResultContent() {
   const searchParams = useSearchParams();
@@ -14,12 +15,35 @@ function ResultContent() {
   const won = searchParams.get("won") === "true";
   const reason = searchParams.get("reason") ?? "";
   const lang = (searchParams.get("lang") ?? siteConfig.lang.default) as Lang;
+  const year = parseInt(searchParams.get("year") ?? "0", 10);
+
+  const { playerId, username, isGuest } = usePlayerStore();
+  const savedRef = useRef(false);
 
   const t = T[lang];
   const legacyKey = getLegacyKey(score);
   const legacyColor = LEGACY_COLORS[legacyKey];
   const legacy = t.legacies[legacyKey];
   const isNp = lang === "np";
+
+  useEffect(() => {
+    if (isGuest || !playerId || !username || savedRef.current) return;
+    savedRef.current = true;
+
+    fetch("/api/scores", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        player_id: playerId,
+        username,
+        score,
+        legacy_title: legacy.title,
+        lang,
+        year_reached: year,
+        game_over_reason: reason,
+      }),
+    }).catch(console.error);
+  }, [isGuest, playerId, username, score, legacy.title, lang, year, reason]);
 
   return (
     <main className="min-h-screen bg-background flex flex-col items-center justify-center px-4 py-12">

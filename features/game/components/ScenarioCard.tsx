@@ -4,6 +4,7 @@ import { useGame } from "../context/GameContext";
 import { ChoiceButton } from "./ChoiceButton";
 import { SCENARIOS } from "@/data/scenarios";
 import { GAME_SCENARIO_COUNT } from "@/lib/game/constants";
+import { Typewriter } from "@/components/ui/TypeWriter";
 
 export function ScenarioCard() {
   const { state, lang, t } = useGame();
@@ -24,7 +25,9 @@ export function ScenarioCard() {
       <div className="w-full h-1.5 bg-background rounded-full overflow-hidden border border-border mb-3">
         <div
           className="h-full bg-accent rounded-full transition-all duration-500"
-          style={{ width: `${((state.scenarioIndex + 1) / GAME_SCENARIO_COUNT) * 100}%` }}
+          style={{
+            width: `${((state.scenarioIndex + 1) / GAME_SCENARIO_COUNT) * 100}%`,
+          }}
         />
       </div>
 
@@ -36,11 +39,11 @@ export function ScenarioCard() {
       </h2>
 
       {/* Scenario description */}
-      <p
+      <Typewriter
+        text={content.description}
+        speed={22}
         className={`text-sm text-ink leading-relaxed mb-5 ${lang === "np" ? "font-nepali" : "font-mono"}`}
-      >
-        {content.description}
-      </p>
+      />
 
       <hr className="newspaper-rule" />
 

@@ -29,7 +29,7 @@ function GameScreen() {
       );
       setTimeout(() => {
         router.push(
-          `/result?score=${score}&won=${state.won}&reason=${encodeURIComponent(state.gameOverReason)}&lang=${lang}`,
+          `/result?score=${score}&won=${state.won}&reason=${encodeURIComponent(state.gameOverReason)}&lang=${lang}&year=${state.year}`,
         );
       }, 2000);
     }
